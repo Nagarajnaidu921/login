@@ -1,13 +1,10 @@
 <?php
- 
- $postdata = file_get_contents("php://input");
+	require('config.php');
+    $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);
     $email = $request->email;
     $password = $request->password;
-    $conn = new mysqli("localhost", "root", "root", "mydb");
-    if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+	
 
 $password_selector=$conn->query("SELECT password FROM login WHERE email='$email'");
 $rowcount=mysqli_num_rows($password_selector);
